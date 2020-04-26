@@ -6,7 +6,7 @@ import configparser
 
 
 conf = configparser.ConfigParser()
-conf.read('D:\\ad_work\db_config')
+conf.read('D:\\ad_work\config\db_config')
 
 orient_57 = {
     'host': conf.get('orient_57', 'host'),
@@ -22,6 +22,15 @@ mysql_57 = {
     'user': conf.get('mysql_57', 'user'),
     'password': conf.get('mysql_57', 'password'),
     'charset': conf.get('mysql_57', 'charset')
+}
+
+mysql_11 = {
+    'host': conf.get('mysql_11', 'host'),
+    'port': int(conf.get('mysql_11', 'port')),
+    'database': conf.get('mysql_11', 'database'),
+    'user': conf.get('mysql_11', 'user'),
+    'password': conf.get('mysql_11', 'password'),
+    'charset': conf.get('mysql_11', 'charset')
 }
 
 bert_153 = {

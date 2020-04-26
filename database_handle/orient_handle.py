@@ -31,21 +31,22 @@ class OrientHandler:
         return self.client.query(sql)
 
     def create_class(self, class_name, class_type):
-        self.client.command('CREATE CLASS {c} EXTENDS {t}'.format(c=class_name, t=class_type))
+        self.client.command('CREATE CLASS {c} IF NOT EXISTS EXTENDS {t}'.format(c=class_name, t=class_type))
 
     def drop_class(self, class_name):
         self.client.command('DROP CLASS {c} UNSAFE'.format(c=class_name))
 
     # property_type is in (String, integer, DATE)
     def create_property(self, class_name, property_name, property_type):
-        self.client.command('CREATE PROPERTY {c}.{p} {t}'.format(c=class_name, p=property_name, t=property_type))
+        self.client.command('CREATE PROPERTY {c}.`{p}` IF NOT EXISTS {t}'.format(c=class_name, p=property_name, t=property_type))
 
     def insert_dict(self, class_name, property_value_dict):
         self.client.command('INSERT INTO {c} Content {p}'.format(c=class_name, p=property_value_dict))
 
     def insert_tuple(self, class_name, property_tuple, value_tuple):
         property_str = ','.join(property_tuple)
-        self.client.command('INSERT INTO {c} ({p}) VALUES {v}'.format(c=class_name, p=property_str, v=value_tuple))
+        sql = 'INSERT INTO {c} ({p}) VALUES {v}'.format(c=class_name, p=property_str, v=value_tuple)
+        self.client.command(sql)
 
     def delete_vertex(self):
         pass
