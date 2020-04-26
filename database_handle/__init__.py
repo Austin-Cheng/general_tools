@@ -6,7 +6,7 @@ import configparser
 
 
 conf = configparser.ConfigParser()
-conf.read('D:\\ad_work\pre_research\AC_CX\database_handle\config')
+conf.read('D:\\ad_work\db_config')
 
 orient_57 = {
     'host': conf.get('orient_57', 'host'),
